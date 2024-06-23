@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/grades.css')}}">
+{% endblock %}
+{% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('attendance') }}">Attendance</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('grades') }}" class="active">Grades</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('notes') }}">Notes</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('placement') }}">Placement</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+{% endblock %}
+{% block content %}
+<div class="tec-container">
+    <h2>Grades</h2>
+    <div class="table">
+        <div class="table-header">
+            <div class="col">Subject</div>
+            <div class="col">Internal 1</div>
+            <div class="col">Internal 2</div>
+            <div class="col">Internal 3</div>
+            <div class="col">Semester Grade</div>
+        </div>
+        {% set subjects_length = subjects|length %}
+        {% for i in range(subjects_length) %}
+        <div class="table-row">
+            <div class="col">{{ subjects[i] }}</div>
+            {% for j in range(3,7) %}
+            {% if grades_data[i][j] is none %}
+            <div class="col"></div>
+            {% else %}
+            <div class="col">{{ grades_data[i][j] }}</div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

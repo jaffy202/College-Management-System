@@ -1,0 +1,180 @@
+/* body,html{
+   height: 100%;
+} */
+ .wrapper{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding-top: 7%;
+ }
+ .user-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 40px;
+	width: 760px;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0 2px 20px -5px #71b7e6;
+}
+ 
+.user-card:before {
+   content: '';
+   position: absolute;
+   height: 300%;
+   width: 173px;
+   background: linear-gradient(135deg, #71b7e6, #9b59b6);
+   top: -60px;
+   left: -125px;
+   z-index: 0;
+   transform: rotate(17deg);
+ }
+ 
+ .user-card-img {
+   display: flex;
+   justify-content: center;
+   align-items: center;   
+   z-index: 1;
+ }
+ 
+ .user-card-img img {
+   width: 150px;
+   height: 200px;
+   object-fit: cover;
+ }
+ 
+ /* .user-card-info {
+   text-align: center;
+ } */
+ 
+ .user-card-info h2 {
+   font-size: 24px;
+   margin: 0;
+   margin-bottom: 10px;
+ }
+ 
+ .user-card-info p {
+   font-size: 20px;
+   margin-bottom: 2px;
+ }
+ .user-card-info p span {
+  font-size: 20px;
+	font-weight: 700;
+	margin-right: 10px;
+}
+.user-card-info{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.name{
+  color: #9b59b6;
+}
+ @media only screen and (min-width: 1000px) {
+   .user-card {
+     width: 80%;
+     flex-direction: row;
+     align-items: flex-start;
+   }   
+   .user-card-img {
+     z-index: 0;
+     margin-right: 20px;
+     margin-bottom: 0;
+   }
+ 
+   .user-card-info {
+     text-align: left;
+     z-index: 1;
+     padding-left: 10%;
+   }  
+ }
+
+ @media (max-width: 1000px){
+   .wrapper{
+      padding-top: 3%;
+   }
+   .user-card:before {
+      width: 300%;
+      height: 200px;
+      transform: rotate(0);
+   }
+   .user-card-info{
+    padding-left: 5%;
+   }
+   .user-card-info h2 {
+      margin-top: 25px;
+      font-size: 24px;
+   }
+   .user-card-info p span {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 18px;
+   }
+   .user-card{
+    width: 90%;
+   }
+ }
+ h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 50px
+        }
+
+        .complaints-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .complaint-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            max-width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .complaint-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .complaint-card-content {
+            padding: 20px;
+        }
+
+        .complaint-card-content p {
+            margin: 10px 0;
+        }
+
+        .complaint-card hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+ .submit-button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    .submit-button:hover {
+        background-color: #45a049; /* Darker Green */
+     }
+.submit-button{
+    text-align: center;
+    margin: 20px
+}

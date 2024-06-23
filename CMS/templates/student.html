@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('home') }}" class="active">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('attendance') }}">Attendance</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('grades') }}">Grades</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+{% endblock %}

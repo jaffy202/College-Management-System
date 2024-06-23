@@ -1,0 +1,97 @@
+{% extends "tec_index.html" %}
+{% block style %}
+<!--    <link rel="stylesheet" href="../static/css/student_info.css">-->
+<style>
+    .wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-card {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .user-card-img {
+        flex: 0 0 100px;
+        margin-right: 20px;
+    }
+
+    .user-card-info {
+        flex: 1;
+    }
+
+    .user-card-info input,
+    .user-card-info select,
+    .user-card-info textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .submit-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .submit-button:hover {
+        background-color: #45a049;
+    }
+    .hidden {
+        display: none;
+    }
+</style>
+
+    {% endblock %}
+{% block content %}
+<br>
+<br><h1 style="text-align:center">Editting Page</h1>
+<br>
+<br>
+<div class="wrapper">
+
+    <form action="{{url_for('edit_student')}}" method="post">
+        <div class="user-card">
+            <div class="user-card-img">
+                <!-- <img src="img/1.jpg" alt=""> -->
+            </div>
+            <div class="user-card-info">
+                <h2 class="name">{{ students_info.name }}<input type="text" value="{{ students_info.name }}"  name="name" ></h2>
+                
+                <p><span>Register Number:</span> {{ students_info.register_number }}<input type="text" class="hidden" id="register_number" name="register_number" value="{{ students_info.register_number }}" /></p>
+                <p><span>Gender:</span>
+                    <select id="gender" name="gender">
+                        <option value="male" {% if students_info.gender == 'male' %}selected{% endif %}>Male</option>
+                        <option value="female" {% if students_info.gender == 'female' %}selected{% endif %}>Female</option>
+                        <option value="transgender" {% if students_info.gender == 'transgender' %}selected{% endif %}>Transgender</option>
+                    </select>
+                </p>
+                <p><span>Date Of Birth:</span> <input type="text" id="date_of_birth" name="dob" value="{{ students_info.date_of_birth }}" /></p>
+                <p><span>Email:</span> <input type="email" id="email" name="email" value="{{ students_info.email }}" /></p>
+                <p><span>Phone Number:</span> <input type="text" id="phone_number" name="phone_number" value="{{ students_info.phone_number }}" /></p>
+                <p><span>Parent's Phone Number:</span> <input type="text" id="parents_phone_number" name="parents_phone_number" value="{{ students_info.parents_phone_number }}" /></p>
+                <p><span>Address:</span> <textarea id="address" name="address">{{ students_info.address }}</textarea></p>
+            </div>
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</div>
+
+<br>
+<br>
+{% endblock %}

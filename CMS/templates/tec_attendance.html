@@ -1,0 +1,25 @@
+{% extends "tec_grades.html" %}
+{% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('teacher_index') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('attendance') }}" class="active">Attendance</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('grades') }}">Grades</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('notes') }}">Notes</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+{% endblock %}
+{% block form %}
+        <form action="{{url_for('attendance')}}" method="POST">
+{% endblock %}

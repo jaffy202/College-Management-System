@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab - youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Teacher registration </title>
+    <link rel="stylesheet" href="../static/css/register.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static', filename='assets/javascript/passwordChecker.js') }}" defer></script>
+   </head>
+<body>
+  <div class="container">
+    <div class="title">Teacher Registration</div>
+    <div class="content">
+      <form onsubmit="return checkPasswords()" action="{{url_for('teacher_register')}}" method="post">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Name</span>
+            <input type="text" name="name" placeholder="Enter your name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" name="email" placeholder="Enter your email" required>
+          </div>
+          
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="text" id="password" name="password" placeholder="Enter your password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input type="text" id="confirmPassword" placeholder="Confirm your password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Teacher ID</span>
+            <input type="text" name="teacher_id" placeholder="Enter your ID" required>
+          </div>
+          <div class="input-box">
+          <span class="details">Department</span>
+          <select  name="department"  style="margin-top: 20px;">
+              <option value="cse" selected>CSE</option>
+              <option value="it">IT</option>
+              <option value="eee">EEE</option>
+              <option value="ece">ECE</option>
+              <option value="civil">Civil</option>
+              <option value="mech">Mechanical</option>
+            </select>
+      </div>
+        </div>
+        
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

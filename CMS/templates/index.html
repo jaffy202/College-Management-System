@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>Student's page</title>
+    {% endblock %}
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    {% block style %}
+    <link rel="stylesheet" href="../static/css/student_info.css">
+
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <div class="logo">SmartCampus</div>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        {% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('home') }}" class="active">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('attendance') }}">Attendance</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('grades') }}">Grades</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('notes') }}">Notes</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('placement') }}">Placement</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+        {% endblock %}
+    </header>
+    <script>
+        hamburger = document.querySelector(".hamburger");
+        hamburger.onclick = function() {
+            navBar = document.querySelector(".nav-bar")
+            navBar.classList.toggle("active");
+        }
+    </script>
+    {% block content %}
+    <div class="wrapper">
+        <div class="user-card">
+            <div class="user-card-img">
+<!--              <img src="img/1.jpg" alt="">-->
+            </div>
+            <div class="user-card-info">
+              <h2 class="name">{{ students_info.name }}</h2>
+            <p><span>Register Number:</span>{{ students_info.register_number }}</p>
+              <p><span>Gender:</span>{{ students_info.gender }}</p>
+              <p><span>Date Of Birth:</span>{{ students_info.date_of_birth }}</p>
+              <p><span>Email:</span>{{ students_info.email }}</p>
+              <p><span>Phone Number:</span>{{ students_info.phone_number }}</p>
+              <p><span>Parent's Phone Number:</span>{{ students_info.parents_phone_number }}</p>
+              <p><span>Address:</span>{{ students_info.address }}</p>
+            </div>
+        </div>
+    </div>
+    <h1>Complaints</h1>
+    <div class="complaints-container">
+        {% for complaint in complaints %}
+        <div class="complaint-card">
+            <div class="complaint-card-content">
+
+                <p><strong>Message:</strong> {{ complaint.complaint_message }}</p>
+                <p><strong>Date:</strong> {{ complaint.complaint_date }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
+
+</body>
+</html>

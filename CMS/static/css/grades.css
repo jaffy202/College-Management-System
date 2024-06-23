@@ -1,0 +1,91 @@
+
+.tec-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+.submit-button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    .submit-button:hover {
+        background-color: #45a049; /* Darker Green */
+    }
+h2, h3, .submit-button{
+    text-align: center;
+    margin: 20px
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header {
+    background-color: #f2f2f2;
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+.table-header .col {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-row {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+.table-row .col {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.remove-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-decoration: none; /* Remove underline from anchor */
+    display: inline-block;
+}
+.remove-btn:hover {
+    background-color: #d32f2f;
+}
+.add-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-decoration: none; /* Remove underline from anchor */
+    display: inline-block; /* Ensure button looks like a block element */
+}
+.add-btn:hover {
+    background-color: #388e3c;
+}

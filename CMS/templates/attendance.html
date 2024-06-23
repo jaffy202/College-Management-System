@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/grades.css')}}">
+{% endblock %}
+{% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('attendance') }}" class="active">Attendance</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('grades') }}">Grades</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('notes') }}">Notes</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('placement') }}">Placement</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+{% endblock %}
+{% block content %}
+<div class="tec-container">
+    <h2>Attendance</h2>
+    {% for date, subject, attendance  in zipped_lists %}
+    <div class="table">
+        <div class="table-header">
+            <div class="col">Subject</div>
+            {% for date_item in date %}
+            <div class="col">{{date_item}}</div>
+            {% endfor %}
+        </div>
+        <div class="table-row">
+            <div class="col">{{ subject }}</div>
+            {% for attendance_item in attendance[3:] %}
+            <div class="col">{{ attendance_item }}</div>
+            {% endfor %}
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

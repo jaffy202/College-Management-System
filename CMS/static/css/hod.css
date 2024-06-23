@@ -1,0 +1,83 @@
+.submit-button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    .submit-button:hover {
+        background-color: #45a049; /* Darker Green */
+    }
+h2, h3, .submit-button{
+    text-align: center;
+    margin: 20px
+}
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+h2{
+    text-align: center;
+    margin-bottom: 30px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+.remove-btn:hover {
+    background-color: #d32f2f;
+}
+.remove-btn {
+    background-color: hsl(4, 90%, 58%);
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.add-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-decoration: none; /* Remove underline from anchor */
+    display: inline-block; /* Ensure button looks like a block element */
+}
+.add-btn:hover {
+    background-color: #388e3c;
+}
+@media only screen and (max-width: 768px) {
+    /* Responsive styling for smaller screens */
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+    table {
+        font-size: 12px;
+    }
+}

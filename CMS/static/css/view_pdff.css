@@ -1,0 +1,135 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    background: linear-gradient(to bottom right, #dce9f8, #00c6ff);
+}
+html{
+    height: 100%;
+}
+.container {
+    width: 90%;
+    margin: 0 auto;
+    font-family: cursive;
+}
+
+@media only screen and (min-width: 600px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 85%;
+    }
+}
+
+.page-header {
+    font-size: 36px;
+    color: rgb(3, 3, 190);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    float: right;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    color: rgb(4, 32, 40);
+    font-size: large;
+    font-family: cursive;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    width: 200px;
+}
+
+.table-container {
+    margin-top: 1in;
+    overflow-x: auto;
+}
+
+#pdfTable {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+#pdfTable th,
+#pdfTable td {
+    border: 2px solid #2b013b;
+    padding: 8px;
+    text-align: center;
+}
+
+#pdfTable th {
+    background-color: #0a2446;
+    color: white;
+}
+
+#pdfTable tr:hover {
+    background-color: #f2f2f2;
+}
+
+.btn-success {
+    background-color: #a2baa7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+}
+
+.btn-warning {
+    background-color: #f0c237;
+    color: #212529;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+}
+
+.btn-danger {
+    background-color: #ed273a;
+    font-size: large;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+}
+
+.btn-primary {
+    background-color: #025e18;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+}
+
+.btn-upload-pdf {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 100px;
+    margin-right: 140px;
+    background-color: #3d057d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 18px;
+}
+
+.btn-upload-pdf:hover {
+    background-color: #ff7043;
+}

@@ -1,0 +1,46 @@
+{% extends "tec_attendance.html" %}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/grades.css')}}">
+<script>
+    function updateHiddenInput(checkbox) {
+        var hiddenInputAttendance = checkbox.parentNode.querySelector('.hidden-input[name="attendance"]');
+        var hiddenInputRegister = checkbox.parentNode.querySelector('.hidden-input[name="register_number"]');
+        if (checkbox.checked) {
+            hiddenInputAttendance.remove();
+            hiddenInputRegister.remove();
+        }
+    }
+</script>
+{% endblock %}
+{% block content %}
+<div class="tec-container">
+    <h2>Attendance Entering Page</h2>
+    <h3>{{class_name}}</h3>
+    <h3>{{ subject }}</h3>
+    <form action="{{ url_for('enter_attendance') }}" method="POST">
+    <div class="table">
+        <div class="table-header">
+            <div class="col">Name</div>
+            <div class="col">Register Number</div>
+            <div class="col">Attendance</div>
+        </div>
+        {% for row in table_data %}
+        <div class="table-row">
+
+            <div class="col">{{ row[1] }}</div>
+            <div class="col">{{ row[2] }}</div>
+            <div class="col">
+
+                <input type="checkbox" value="P" name="attendance" onchange="updateHiddenInput(this)">
+                <input type="hidden" value="A" class="hidden-input" name="attendance" >
+                <input type="hidden" value="{{row[2]}}" class="hidden-input" name="register_number" >
+
+            </div>
+        </div>
+        {% endfor %}
+        <!-- More table rows can be added here -->
+    </div>
+        <button class="submit-button" type="submit">Submit Grades</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+{% block style %}
+<link rel="stylesheet" href="../static/css/subject.css">
+{% endblock %}
+{% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('attendance') }}">Attendance</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('grades') }}">Grades</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('notes') }}" class="active">Notes</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('placement') }}">Placement</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+{% endblock %}
+{% block content %}
+<ol style="--length: 5" role="list">
+    {% set counter = namespace(value=1) %}
+    {% for subject in subjects %}
+    <a href="{{url_for('sub_notes', subject=subject)}}">
+        <li class="sub" style="--i: {{ counter.value }}">
+        <h3>{{ subject }}</h3>
+        </li>
+    </a>
+    {% set counter.value = counter.value + 1 %}
+    {% endfor %}
+</ol>
+{% endblock %}

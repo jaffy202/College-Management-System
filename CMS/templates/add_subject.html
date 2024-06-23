@@ -1,0 +1,155 @@
+{% extends "hod_index.html" %}
+{% block style %}
+<style>
+    .contain {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+    .sub-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .file-upload-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .file-upload-label {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .file-upload-label:hover {
+        background-color: #0056b3;
+    }
+
+    #fileName {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .btn-container {
+        text-align: center;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #218838;
+    }
+</style>
+{% endblock %}
+{% block navigation %}
+<nav class="nav-bar">
+    <ul>
+        <li>
+            <a href="{{ url_for('hod_index') }}">Home</a>
+        </li>
+        <li>
+            <a href="{{ url_for('add_student') }}">Add Students</a>
+        </li>
+        <li>
+            <a href="{{ url_for('add_subject') }}" class="active">Add Subjects</a>
+        </li>
+        <li>
+            <a href="{{ url_for('login') }}">Logout</a>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="contain">
+<div class="sub-container">
+    <form id="subjectForm" enctype="multipart/form-data">
+        <h2>Upload Subjects File</h2>
+        <div class="file-upload-container">
+<!--            <label for="fileInput">Choose File</label>-->
+            <input type="file" id="fileInput" name="file" class="file-upload-label" accept=".xls,.xlsx"
+                onchange="handleFileSelect(event)">
+           <div style="display: none;" id="fileName"></div>
+        </div>
+        <div class="btn-container">
+            <button type="button" class="btn" onclick="addData()">Add Subjects</button>
+            <button type="button" class="btn" onclick="updateData()">Update Subjects</button>
+        </div>
+    </form>
+</div>
+</div>
+<script>
+    function handleFileSelect(event) {
+        const fileInput = event.target;
+        document.getElementById("fileName").textContent = fileInput.files[0].name;
+    }
+
+    function addData() {
+        const fileInput = document.getElementById("fileInput");
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/add_subject', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                console.log('Data added successfully.');
+                // Add any further actions if needed
+            } else {
+                console.error('Failed to add data.');
+            }
+        }).catch(error => {
+            console.error('Error adding data:', error);
+        });
+    }
+
+    function updateData() {
+        const fileInput = document.getElementById("fileInput");
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/update_subject', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                console.log('Data updated successfully.');
+                // Add any further actions if needed
+            } else {
+                console.error('Failed to update data.');
+            }
+        }).catch(error => {
+            console.error('Error updating data:', error);
+        });
+    }
+</script>
+{% endblock %}

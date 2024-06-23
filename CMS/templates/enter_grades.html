@@ -1,0 +1,41 @@
+{% extends "tec_grades.html" %}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/grades.css')}}">
+{% endblock %}
+{% block content %}
+<div class="tec-container">
+    <h2>Grade Entering Page</h2>
+    <h3>{{class_name}}</h3>
+    <h3>{{ subject }}</h3>
+    <form action="{{ url_for('enter_grades') }}" method="POST">
+    <div class="table">
+        <div class="table-header">
+            <div class="col">Name</div>
+            <div class="col">Register Number</div>
+            <div class="col">Internal 1</div>
+            <div class="col">Internal 2</div>
+            <div class="col">Internal 3</div>
+            <div class="col">Semester Grade</div>
+        </div>
+        {% for row in table_data %}
+        <div class="table-row">
+
+            {% for cell in row[1:] %}
+                {% if loop.index0 < 2 %}
+                    <div class="col">{{ cell }}</div>
+                {% else %}
+                    {% if cell is none %}
+                    <div class="col"><input type="text" name="grades[{{ row[2] }}][{{ loop.index0 - 2 }}]" value=""></div>
+                    {% else %}
+                    <div class="col"><input type="text" name="grades[{{ row[2] }}][{{ loop.index0 - 2 }}]" value="{{ cell }}"></div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <!-- More table rows can be added here -->
+    </div>
+        <button class="submit-button" type="submit">Submit Grades</button>
+    </form>
+</div>
+{% endblock %}

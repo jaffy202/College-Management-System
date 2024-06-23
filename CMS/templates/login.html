@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+</head>
+<body>
+    <section>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+            <p class="warn-message">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="form-box">
+            <div class="form-value">
+                <form action="{{url_for('login')}}" method="post">
+                    <h2>Login</h2>
+                    
+                    <!-- User type selection -->
+                    <div class="user-type">
+                        <input type="radio" id="student" name="user_type" value="student" checked>
+                        <label for="student">Student</label>
+
+                        <input type="radio" id="parent" name="user_type" value="parent">
+                        <label for="parent">Parent</label>
+
+                        <input type="radio" id="teacher" name="user_type" value="teacher">
+                        <label for="teacher">Teacher</label>
+
+                        <input type="radio" id="hod" name="user_type" value="hod">
+                        <label for="hod">HOD</label>
+
+                        <input type="radio" id="admin" name="user_type" value="admin">
+                        <label for="admin">Admin</label>
+                    </div>
+                    
+                    <!-- Student login fields -->
+                    <div class="student-fields">
+                        <div class="inputbox">
+                            <input type="text" id="register_number" name="register_number" required>
+                            <label for="register_number">Register Number</label>
+                        </div>
+                        <div class="deptinput">
+                            <span class="dept">Department</span>
+                            <select name="department">
+                                <option value="cse" selected>CSE</option>
+                                <option value="it">IT</option>
+                                <option value="eee">EEE</option>
+                                <option value="ece">ECE</option>
+                                <option value="civil">Civil</option>
+                                <option value="mech">Mechanical</option>
+                            </select>
+                        </div>    
+                    </div>
+
+                    <!-- Parent login fields -->
+                    <div class="parent-fields" style="display: none;">
+                        <div class="inputbox">
+                            <input type="email" id="parent_email" name="parent_email" required>
+                            <label for="parent_email">Parent Email</label>
+                        </div>
+                        <div class="inputbox">
+                            <input type="tel" id="phone_number" name="phone_number" required>
+                            <label for="phone_number">Phone Number</label>
+                        </div>
+                    </div>
+
+                    <!-- Teacher login fields -->
+                    <div class="teacher-fields" style="display: none;">
+                        <div class="inputbox">
+                            <input type="text" id="teacher_id" name="teacher_id" required>
+                            <label for="teacher_id">Teacher ID</label>
+                        </div>
+                        <div class="inputbox">
+                            <input type="email" id="teacher_email" name="teacher_email" required>
+                            <label for="teacher_email">Email</label>
+                        </div>
+                    </div>
+
+                    <!-- HOD login fields -->
+                    <div class="hod-fields" style="display: none;">
+                        <div class="inputbox">
+                            <input type="text" id="hod_id" name="hod_id" required>
+                            <label for="hod_id">HOD ID</label>
+                        </div>
+                        <div class="inputbox">
+                            <input type="email" id="hod_email" name="hod_email" required>
+                            <label for="hod_email">Email</label>
+                        </div>
+                    </div>
+
+                    <!-- Admin login fields -->
+                    <div class="admin-fields" style="display: none;">
+                        <div class="inputbox">
+                            <input type="email" id="admin_email" name="admin_email" required>
+                            <label for="admin_email">Admin Email</label>
+                        </div>
+                    </div>
+
+                    <!-- Password field -->
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" id="password" name="password" required>
+                        <label for="password">Password</label>
+                    </div>
+
+                    <div class="forget">
+                        <div class="contain">
+<!--                            <label for="remember"><input name="remember_me" id="remember" type="checkbox">Remember Me</label>-->
+                            <a id="forget_password" href="#">Forget Password</a>
+                        </div>   
+                    </div>
+                    <button>Log in</button>
+                    <div class="register">
+                        <div class="contain" id="registerContainer"> 
+                            <p>Don't have an account</p> 
+                            <a id="registerLink" href="{{url_for('register')}}">Register</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<!--    {% if alert_message %}-->
+<!--    <script>-->
+<!--        alert("{{ alert_message }}");-->
+<!--    </script>-->
+<!--    {% endif %}-->
+    <script>
+        var baseUrl = "{{url_for('login')}}"; // Replace 'index' with the appropriate endpoint for your login page
+        
+        // Define URLs for registration pages passed from Flask
+        var registrationUrls = {
+            'register': "{{url_for('register')}}",
+            'parent_register': "{{url_for('parent_register')}}",
+            'teacher_register': "{{url_for('teacher_register')}}",
+            'stu_forget':"{{url_for('forgot', user='student')}}",
+            'par_forget':"{{url_for('forgot', user='parent')}}",
+            'tec_forget':"{{url_for('forgot', user='teacher')}}",
+            'ad_forget':"{{url_for('forgot', user='admin')}}"
+            // Add more user types and their registration URLs as needed
+        };
+    </script>
+    <script src="../static/assets/javascript/login.js"></script>
+</body>
+</html>

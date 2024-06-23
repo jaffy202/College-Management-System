@@ -1,0 +1,89 @@
+{% extends "index.html" %}
+{% block title %}
+<title>HOD Page</title>
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="../static/css/hod.css">
+{% endblock %}
+{% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('hod_index') }}" class="active">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('add_student') }}">Add Students</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('add_subject') }}">Add Subjects</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>{{department}}</h2>
+    <h2>Manage Department Teachers</h2>
+    <a href="{{url_for('teacher_register')}}" class="add-btn">Add Teacher</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Teacher ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through department teachers -->
+            {% for teacher in department_teachers %}
+            <tr>
+                <td>{{ teacher.teacher_id }}</td>
+                <td>{{ teacher.name }}</td>
+                <td>{{ teacher.email }}</td>
+                <td>
+                    <form action="{{url_for('hod_index')}}" method="post">
+                        <input type="hidden" name="teacher_id" value="{{ teacher.teacher_id }}">
+                        <button type="submit" class="remove-btn">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <h2>Class Teachers</h2>
+    <form action="{{url_for('save_class_teacher_id')}}" method="post">
+    <table>
+        <thead>
+            <tr>
+                <th>Class</th>
+                <th>Teacher ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through department teachers -->
+
+            {% for record in class_records %}
+            <tr>
+                <td>{{ record.department }}</td>
+
+                {% if record.teacher_id is none %}
+                <td><input type="text" name="class_teacher_id" value=""></td>
+                {% else %}
+                <td><input type="text" name="class_teacher_id" value="{{ record.teacher_id }}"></td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+        <button class="submit-button" type="submit">Submit</button>
+    </form>
+</div>
+<br>
+{% endblock %}

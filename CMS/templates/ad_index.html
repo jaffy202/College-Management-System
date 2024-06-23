@@ -1,0 +1,87 @@
+{% extends "index.html" %}
+{% block title %}
+<title>Admin Page</title>
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="../static/css/admin.css">
+{% endblock %}
+{% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('admin_index') }}" class="active">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+{% endblock %}
+{% block content %}
+<div class="admin-container">
+    <h2>Admin Panel - Manage HODs</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Teacher ID</th>
+                <th></th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through HOD teachers -->
+            {% for teacher in hod_teachers %}
+            <tr>
+                <td>{{ teacher.name }}</td>
+                <td>{{ teacher.email }}</td>
+                <td>{{ teacher.department }}</td>
+                <td>{{ teacher.teacher_id }}</td>
+                <td><span class="hod">HOD</span></td>
+                <td>
+                    <!-- Display HOD label and change HOD form -->
+                    
+                    <form action="/change_hod" method="post">
+                        <input type="hidden" name="department" value="{{ teacher.department }}">
+                        <select name="new_hod">
+                            <!-- Options for selecting new HOD -->
+                            {% for teacher_option in teachers_by_department[teacher.department] %}
+                                <option value="{{ teacher_option.teacher_id }}"
+                                        {% if teacher_option.teacher_id == teacher.teacher_id %}
+                                            selected
+                                        {% endif %}>
+                                    {{ teacher_option.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Change HOD">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            
+            <!-- Loop through non-HOD teachers -->
+            {% for teacher in non_hod_teachers %}
+            <tr>
+                <td>{{ teacher.name }}</td>
+                <td>{{ teacher.email }}</td>
+                <td>{{ teacher.department }}</td>
+                <td>{{ teacher.teacher_id }}</td>
+                <td>
+                    <!-- Display Set as HOD form -->
+                    <form action="/change_hod" method="post">
+                        <input type="hidden" name="new_hod" value="{{ teacher.teacher_id }}">
+                        <input type="hidden" name="department" value="{{ teacher.department }}">
+                        <input type="submit" value="Set as HOD">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

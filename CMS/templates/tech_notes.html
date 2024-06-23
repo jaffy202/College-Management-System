@@ -1,0 +1,139 @@
+{% extends "index.html" %}
+{% block title %}
+<title>Teacher Page</title>
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/upload.css')}}">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+{% endblock %}
+{% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('teacher_index') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('attendance') }}">Attendance</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('grades') }}">Grades</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('notes') }}" class="active">Notes</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <!-- Upload Form -->
+   <div id="uploadForm" class="row justify-content-center">
+       <div class="col-md-6 upload-form">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+               {% if messages %}
+               {% for category,message in messages %}
+               <div class="file-message">{{message}}</div>
+               {% endfor %}
+               {% endif %}
+               {% endwith %}
+        <h3 class="page-header"><span class="fa fa-image"> Upload Files</span></h3>
+               
+           <form action="{{url_for('upload')}}" method="POST" enctype="multipart/form-data" id="uploadFormElement">
+               <div class="form-group">
+                   <label for="branch">Branch</label>
+                   <select id="branch" class="form-control" name="branch">
+                       <option value="" selected disabled>Choose Branch</option>
+                       <option value="cse">Computer Science and Engineering</option>
+                       <option value="it">Information Technology</option>
+                       <option value="eee">Electrical and Electronics Engineering</option>
+                       <option value="civil">Civil Engineering</option>
+                       <option value="mech">Mechanical Engineering</option>
+                       <option value="ece">Electrical and Communication Engineering</option>
+                   </select>
+               </div>
+   
+               <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" class="form-control" name="subject" placeholder="Enter subject" disabled>
+                    <option value="" selected disabled>Choose Branch First</option>
+                </select>
+            </div>
+   
+               <div class="form-group">
+                   <label for="upload_PDF">Choose file</label>
+                   <input type="file" id="upload_PDF"  class="form-control" name="upload_PDF" accept=".pdf,.docx,.doc,.xlsx,.xls,.pptx,.ppt,.jpg,.png">
+               </div>
+   
+               <div class="form-group upload-btn">
+                   <input type="submit" class="btn btn-primary btn-block" value="Upload">
+               </div>
+           </form>
+       </div>
+   </div>
+   <!-- View PDFs Section
+   <div id="viewPDFs" class="row justify-content-center {% if data %}show{% else %}hide{% endif %}">
+       <div class="col-md-6">
+           {% if data %}
+           <h3 class="page-header"><span class="fa fa-image"> View PDF Files</span></h3>
+           <table class="table table-bordered">
+               <tr>
+                   <th>S.No</th>
+                   <th>Branch</th>
+                   <th>Subject</th>
+                   <th>Files</th>
+                   <th>Update</th>
+                   <th>Delete</th>
+                   <th>Download</th>
+               </tr>
+               {% for res in data %}
+               {% set i=loop.index %}
+               <tr>
+                   <td>{{i}}</td>
+                   <td>{{ res['branch'] }}</td>
+                   <td>{{ res['subject'] }}</td>
+                   <td><a href="static/PDF/{{res['branch'] }}/{{res['file_name'] }}" class="btn btn-success btn-block">View PDF</a></td>
+                   <td><a href="{{ url_for('update_record', id=res['pid']) }}" class="btn btn-warning btn-block">Update</a></td>
+   
+                   <td>
+                       <form action="{{ url_for('delete_record', id=res['pid']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?');">
+                           <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                       </form>
+                   </td>
+                  <td><a href="{{ url_for('download_pdf', id=res['pid']) }}" class="btn btn-primary btn-block">Download</a></td>
+   
+               </tr>
+               {% endfor %}
+           </table>
+           {% endif %}
+       </div>
+   </div>
+   </div>
+   <div class="row justify-content-center view-upload-btn">
+       <div class="col-md-6">
+           <a href="/view_pdf" class="btn btn-custom">View Uploaded PDFs</a>
+       </div>
+   </div>
+   <script>
+    // JavaScript for file input animation
+    $(document).ready(function(){
+        // Toggle between upload form and view PDFs
+        $("#uploadFormElement").submit(function(e) {
+            $("#hidden_branch").val($("#branch").val());
+            $("#hidden_subject").val($("#subject").val());
+            $("#uploadForm").toggleClass("hide");
+            $("#viewPDFs").toggleClass("hide");
+        });
+    });
+</script> -->
+<!-- <div class="row justify-content-center view-upload-btn">
+    <div class="col-md-6">
+        <a href="/view_pdf" class="btn btn-custom">View Uploaded PDFs</a>
+    </div>
+</div> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../static/assets/javascript/subjects.js"></script>
+
+{% endblock %}

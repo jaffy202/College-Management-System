@@ -1,0 +1,54 @@
+{% extends "hod_index.html" %}
+{% block style %}
+<link rel="stylesheet" href="../static/css/students.css">
+{% endblock %}
+{% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('hod_index') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('add_student') }}" class="active">Add Students</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('add_subject') }}">Add Subjects</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+{% endblock %}
+{% block content %}
+<div class="student-container">
+        <h1>Add Class Students</h1>
+        <div class="dpt">Department: {{department}}</div>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div>
+                <label for="year">Year:</label>
+                <select id="year" name="year">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div>
+                <label for="section">Section:</label>
+                <select id="section" name="section">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                </select>
+            </div>
+            <div>
+                <label for="file">Upload File (CSV or Excel):</label>
+                <input type="file" id="file" name="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script src="../static/assets/javascript/students.js"></script>
+{% endblock %}

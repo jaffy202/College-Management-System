@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+{% block title %}
+<title>Teacher Page</title>
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="../static/css/home.css">
+{% endblock %}
+{% block navigation %}
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="{{ url_for('teacher_index') }}" class="active">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('attendance') }}">Attendance</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('grades') }}">Grades</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('notes') }}">Notes</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('login') }}" >Logout</a>
+                </li>
+            </ul>
+        </nav>
+{% endblock %}
+{% block content %}
+<div>
+    <a href="{{ url_for('my_class') }}" class="add-btn">My Class</a>
+</div>
+<div class="card">
+    <div class="card-body">
+        <p><strong>Name: </strong>{{ teacher_details.name }}</p>
+        <p><strong>ID: </strong>{{ teacher_details.teacher_id }}</p>
+        <p><strong>Department: </strong>{{ teacher_details.department }}</p>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Student Complaint</h1>
+    <form id="complaint-form">
+        <div class="form-group">
+            <label for="register-number">Register Number:</label>
+            <input type="text" id="register-number" name="register-number" required>
+        </div>
+        <div class="form-group">
+            <label for="complaint-message">Complaint Message:</label>
+            <textarea id="complaint-message" name="complaint-message" rows="4" required></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<script src="../static/assets/javascript/complaint.js"></script>
+{% endblock %}
